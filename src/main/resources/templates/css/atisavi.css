@@ -1,0 +1,44 @@
+#navegador ul{
+    list-style-type: none;
+    margin: -60px 10px 0 0;
+    float:right ;
+ }
+ #navegador li{
+    display: inline;
+    text-align: center;
+    margin: 0 10px 0 0;
+ }
+ #navegador li a {
+    padding: 5px 7px 2px 7px;
+    color: #666;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
+    text-decoration: none;
+ }
+ #navegador li a:hover{
+    background-color: #333333;
+    color: #ffffff;
+ }
+
+ h1{
+    color: forestgreen;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 50px;
+    
+ }
+
+ p{
+    text-align: center;
+    font-size: 75px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
+
+ img{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+ }
+ body{
+    background-color: lightgoldenrodyellow;
+ }
+
