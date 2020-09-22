@@ -1,7 +1,8 @@
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Registro ATISAVI</title>
-		<link rel="stylesheet" href="../css/ISesion.css" />
+		<link rel="stylesheet" th:href="@{/css/ISesion.css}" />
 	</head>
 
 	<body>
@@ -11,7 +12,7 @@
 
         <div id="navegador">
             <ul>
-            <li><a href="PantallaPrincipal.html">Volver</a></li>
+             <li><a th:href="@{/}">Volver</a></li>
          
             </ul>
             </div>
@@ -21,10 +22,7 @@
     </div>
 
     <form action="#" method="post">
-      <h2> Iniciar Sesión</h2>
-      
-     
-      
+      <h2> Iniciar Sesión</h2> 
     
       
            
