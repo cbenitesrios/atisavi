@@ -28,7 +28,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String basic() { 
-		log.info("ENTRO");
+		log.info("ENTR");
 		repoRole.save(Role.builder().id(1l).rolename("ADMIN").build());
 		repoRole.save(Role.builder().id(2l).rolename("USUARIO").build());
 		repoRole.save(Role.builder().id(3l).rolename("DOCTOR").build());
