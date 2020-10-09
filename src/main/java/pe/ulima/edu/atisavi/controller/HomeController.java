@@ -13,15 +13,7 @@ import pe.ulima.edu.atisavi.repository.IUserRepository;
 @Log
 @Controller
 public class HomeController {
-
-	@Autowired
-	IUserRepository repoUser; 
-	@Autowired
-	IRoleRepository repoRole;
-	
-	@Autowired
-    BCryptPasswordEncoder bcrypt;  
-
+ 
 
 	@GetMapping("/")
 	public String basic() {  
