@@ -1,44 +1,74 @@
-#navegador ul{
-    list-style-type: none;
-    margin: -60px 10px 0 0;
-    float:right ;
- }
- #navegador li{
-    display: inline;
-    text-align: center;
-    margin: 0 10px 0 0;
- }
- #navegador li a {
-    padding: 5px 7px 2px 7px;
-    color: #666;
-    background-color: #eeeeee;
-    border: 1px solid #ccc;
-    text-decoration: none;
- }
- #navegador li a:hover{
-    background-color: #333333;
-    color: #ffffff;
- }
+body { background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(113,83,62,1) 47%, rgba(0,212,255,1) 100%);}
+#contenedor{
+        
+        border:2px solid #ffffff;
+}
+#login{
+	text-align:center;
+	margin:20px;
+}
+#cabecera{
+       
+        height:10%;
+        margin:20px;
+        text-align: center;
+        background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(113,83,62,1) 47%, rgba(0,212,255,1) 100%);
+        border:2px solid #ffffff; 
 
- h1{
-    color: forestgreen;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 50px;
-    
- }
+}
+#menu{
+      	height:10%;	
+        margin: 20px;
+        background-color:#ffffff;
 
- p{
-    text-align: center;
-    font-size: 75px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
- }
+        text-align: center;
+        background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(113,83,62,1) 47%, rgba(0,212,255,1) 100%);
+        border:2px solid #ffffff; 
+      
+}
 
- img{
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
- }
- body{
-    background-color: lightgoldenrodyellow;
- }
 
+#menu li{
+	margin: 5px;
+	display: inline-block;
+	
+
+}
+
+#menu ul li {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+
+#menu ul li a {
+	color:#000000;font-size: 35px; text-decoration: none;
+}
+
+
+#demotext {
+
+font-size: 80px;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+
+}
+
+
+
+
+#derecha{
+        height:50%;
+        
+        
+        
+}
+#pie{
+        
+        height:20%;
+        text-align: center;
+        
+       
+        clear:both;
+}

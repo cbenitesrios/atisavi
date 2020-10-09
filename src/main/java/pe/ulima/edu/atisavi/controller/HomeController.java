@@ -1,13 +1,9 @@
 package pe.ulima.edu.atisavi.controller;
  
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+ 
 import org.springframework.stereotype.Controller; 
 import org.springframework.web.bind.annotation.GetMapping;  
-import lombok.extern.java.Log; 
-import pe.ulima.edu.atisavi.repository.IRoleRepository;
-import pe.ulima.edu.atisavi.repository.IUserRepository;
+import lombok.extern.java.Log;  
 
 
 @Log

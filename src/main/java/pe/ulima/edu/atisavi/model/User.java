@@ -42,7 +42,6 @@ public class User {
 
     @ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY ) 
     private List<Role> role; 
-
-   
+ 
 
 }

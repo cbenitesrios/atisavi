@@ -46,6 +46,10 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter{
              .antMatchers(
                      "/",
                      "/home",
+                     "/list",
+                     "/add/**",
+                     "/addEdit/**",
+                     "/edit/**",
                      "/loginerror",    
                      "/loginok",  
                      "/register/**",
@@ -55,6 +59,7 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter{
                      "/fonts/**", 
                      "/vendor/**", 
                      "/imagenes/**",
+                     "/webjars/**",
                      "/css/**",
                      "/img/**").permitAll()
              .antMatchers("/user/**").hasRole("USER")
