@@ -1,14 +1,18 @@
 package pe.ulima.edu.atisavi.business.impl; 
 
+import java.util.Collection;
 import java.util.Optional;
-
-import org.springframework.beans.BeanUtils;
+import java.util.stream.Collectors; 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import lombok.extern.java.Log;
-import pe.ulima.edu.atisavi.business.IUserService;
-import pe.ulima.edu.atisavi.config.ConfigurationSecurity;
+import pe.ulima.edu.atisavi.business.IUserService; 
+import pe.ulima.edu.atisavi.model.Role;
 import pe.ulima.edu.atisavi.model.User;
 import pe.ulima.edu.atisavi.model.dto.UserDto;
 import pe.ulima.edu.atisavi.repository.IUserRepository; 
@@ -18,26 +22,23 @@ import pe.ulima.edu.atisavi.repository.IUserRepository;
 public class UserServiceImpl implements IUserService{
 
 	@Autowired
-	IUserRepository userrepo;
+	IUserRepository userRepository;
 	 
-	@Autowired
-	ConfigurationSecurity encoder;
-	
+	@Autowired 
+	private BCryptPasswordEncoder passwordEncoder;
+ 
 	@Override
-	public boolean login(UserDto usuario) {
-		
-		User user = null;
-		Optional<User> opc = userrepo.findByEmail(usuario.getEmail());
-		if(opc.isPresent()) {
-			user = opc.get();  
-			log.info(user.toString() + " el usuario retornado.");
-			return (encoder.passwordEncoder().matches(usuario.getPass(), user.getPassword()));
-		}else {
-			log.info("No se encontro paciente");
-			return false;
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { 
+		User user = userRepository.findByEmail(username).orElseThrow (()-> new UsernameNotFoundException ("Invalid username or password."));
+		if(user == null) {
+			throw new UsernameNotFoundException("Invalid username or password.");
 		}
-		
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));		
+		 
 	}
 	
-	 
+	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
+		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+	}
+ 
 }

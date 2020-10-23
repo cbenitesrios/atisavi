@@ -6,21 +6,29 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
 </head>
 <body>
-<div class="alert alert-success">
-    
+<div class="alert alert-success"> 
 <div class="container">
     <h5>Añadir/Editar</h5>
-    <form action="#" th:action="@{/addEdit}" method="post" th:object="${usuarios}">
+    <form action="#" th:action="@{/admin/addEdit}" method="post" th:object="${usuarios}">
+    	<p  th:if="${addUser}">Id:<br/> </p>
+        <input th:if="${addUser}" type="number" class="form-control" id="id" th:field="*{id}" placeholder="ID" disabled/> 
         Nombre:<br/>
-        <input type="text" class="form-control" id="nombre" th:field="*{name}" placeholder="Nombre"/>
+        <input type="text" class="form-control" id="nombre" th:field="*{firstName}" placeholder="Nombre"/>
         <br/>
         Apellido:<br/>
-        <input type="text" class="form-control" id="edad1" th:field="*{lastname}" placeholder="Apellido"/>
+        <input type="text" class="form-control" id="apellido" th:field="*{lastName}" placeholder="Apellido"/>
         <br/> 
         Telefono:<br/>
-        <input type="text" class="form-control" id="provincia" th:field="*{phone}" placeholder="Telefono"/>
+        <input type="text" class="form-control" id="telefono" th:field="*{phone}" placeholder="Telefono"/>
         <br/> 
-        <button type="submit" class="btn btn-info">Aceptar</button>
+        Email:<br/> 
+        <input th:if="${addUser}" type="text" class="form-control" id="email" th:field="*{email}" placeholder="Email"/>
+        <input th:if="${!addUser}" type="text" class="form-control" id="email" th:field="*{email}" placeholder="Email" disabled/>
+        Password:<br/>
+        <input type="text" class="form-control" id="password" th:field="*{password}" placeholder="Apellido"/>
+        <br/> 
+        <br/> 
+        <button type="submit" class="btn btn-info" >Aceptar</button>
     </form>
 </div>
 </body>

@@ -11,8 +11,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserDto {
 
-  private boolean type;
-  private String email;
-  private String pass;
+    private Long id;
+	 
+    private String email;
 
+    private String password;
+
+    private String firstName;
+    
+    private String lastName;
+    
+    private String phone;
+
+    private boolean enabled;
 }
