@@ -1,74 +1,67 @@
-body { background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(113,83,62,1) 47%, rgba(0,212,255,1) 100%);}
-#contenedor{
-        
-        border:2px solid #ffffff;
+
+
+ h1{
+    color: forestgreen;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 50px;
+    text-align: center;
+    
+ }
+
+ p{
+    text-align: center;
+    font-size: 75px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
+
+ img{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+ }
+ body{
+    background-color: transparent;
+ }
+
+
+
+ #nav{
+   height: 62px;
+   background-color:#07926f;
+   text-align: center;
+ }
+
+ #nav ul{
+    list-style: none;
+    display: inline-block;
+margin: 0;
+padding: 0;
+ }
+
+ #nav ul li{
+     float: left;
+     margin-top: 20px;
+ }
+
+ #nav ul li a {
+     color: white;
+     font-weight: bold;
+     text-decoration: none;
+     font-size: 20px;
+     padding: 20px;
+ }
+
+ #nav ul li a:hover{
+   background-color: #929fb3;
+ }
+
+ li {
+   border-right: 1px solid #bbb;
 }
-#login{
-	text-align:center;
-	margin:20px;
-}
-#cabecera{
-       
-        height:10%;
-        margin:20px;
-        text-align: center;
-        background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(113,83,62,1) 47%, rgba(0,212,255,1) 100%);
-        border:2px solid #ffffff; 
 
-}
-#menu{
-      	height:10%;	
-        margin: 20px;
-        background-color:#ffffff;
-
-        text-align: center;
-        background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(113,83,62,1) 47%, rgba(0,212,255,1) 100%);
-        border:2px solid #ffffff; 
-      
-}
-
-
-#menu li{
-	margin: 5px;
-	display: inline-block;
-	
-
-}
-
-#menu ul li {
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-}
-
-
-#menu ul li a {
-	color:#000000;font-size: 35px; text-decoration: none;
-}
-
-
-#demotext {
-
-font-size: 80px;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-
+li:last-child {
+   border-right: none;
 }
 
 
 
-
-#derecha{
-        height:50%;
-        
-        
-        
-}
-#pie{
-        
-        height:20%;
-        text-align: center;
-        
-       
-        clear:both;
-}
