@@ -25,7 +25,7 @@ public class AdminController {
     public String getAll(Model model, Principal principal){
     	log.info("USUARIO LOGEADO: " +  principal.getName()); 
         model.addAttribute("usuarios", repository.findAll());
-        return "user_list";
+        return "pagina1";
     }
 
     @GetMapping(path = {"/admin/add", "/admin/edit/{id}"})
