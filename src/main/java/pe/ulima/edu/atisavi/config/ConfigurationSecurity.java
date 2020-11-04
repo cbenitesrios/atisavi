@@ -42,8 +42,9 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter{
                      "/webjars/**",
                      "/css/**",
                      "/img/**").permitAll()
-              .antMatchers("/admin/**").hasAuthority("ADMIN") 
-              .antMatchers("/user/**").hasAuthority("USER")
+              .antMatchers("/admin/**").hasAuthority("ADMIN")
+              .antMatchers("/doctor/**").hasAuthority("DOCTOR")
+              .antMatchers("/paciente/**").hasAuthority("PACIENTE")
               .anyRequest().authenticated()
          .and() 
          	 .formLogin().permitAll()

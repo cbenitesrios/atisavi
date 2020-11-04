@@ -8,21 +8,22 @@ import org.springframework.web.bind.annotation.*;
 import lombok.extern.java.Log;
 import pe.ulima.edu.atisavi.model.User;
 import pe.ulima.edu.atisavi.model.dto.UserDto;
-import pe.ulima.edu.atisavi.repository.IUserRepository; 
+import pe.ulima.edu.atisavi.repository.IUserRepository;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller 
 @Log
-public class UserController {
+public class AdminController {
 	@Autowired
     private IUserRepository repository; 
 	
 
 	
     @GetMapping("/admin/list")
-    public String getAll(Model model){
-    	log.info(repository.findAll().toString());
+    public String getAll(Model model, Principal principal){
+    	log.info("USUARIO LOGEADO: " +  principal.getName()); 
         model.addAttribute("usuarios", repository.findAll());
         return "user_list";
     }
