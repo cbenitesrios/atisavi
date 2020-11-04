@@ -9,11 +9,13 @@
 
 
 <body>
-<div id="navbar" class="collapse navbar-collapse"> 
+<div id="navbar" class="collapse navbar-collapse" style="width: 1024px; margin-left: 7%;"> 
 			</div>  
 			<div id ="izquierda">
 			<div style="text-align: right; margin-bottom: 5px;">
-        <a th:href="@{/admin/add}" class="btn btn-success" role="button">Añadir paciente</a>
+        <a th:href="@{/admin/add}" class="btn btn-success" role="button">Pacientes</a>
+        <a th:href="@{/admin/add}" class="btn btn-success" role="button">Citas</a>
+        <a th:href="@{/admin/add}" class="btn btn-success" role="button">Crear citas</a>
     </div>
     <ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>

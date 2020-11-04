@@ -27,6 +27,23 @@ public class AdminController {
         model.addAttribute("usuarios", repository.findAll());
         return "pagina1";
     }
+    @GetMapping("/receta")
+	public String PagAdmin1() {   
+		return "pagina1"; 
+	}
+    @GetMapping("/stock")
+   	public String PagAdmin2() {   
+   		return "pagina1"; 
+   	}	
+ 	
+    @GetMapping("/medico")
+   	public String PagAdmin4() {   
+   		return "pagina1"; 
+   	}	
+    @GetMapping("/paciente")
+   	public String PagAdmin() {   
+   		return "pagina1"; 
+   	}
 
     @GetMapping(path = {"/admin/add", "/admin/edit/{id}"})
     public String addForm(@PathVariable("id") Optional<Long> id, Model model){  

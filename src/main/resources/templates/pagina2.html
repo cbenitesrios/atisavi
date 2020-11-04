@@ -86,10 +86,8 @@
 			</div>  
 			<div id ="izquierda">
 			<div style="text-align: right; margin-bottom: 5px;">
-        <a th:href="@{/receta}" class="btn btn-success" role="button">Receta</a>
-        <a th:href="@{/stock}" class="btn btn-success" role="button">Stock</a>
-        <a th:href="@{/paciente}" class="btn btn-success" role="button">Paciente</a>
-        <a th:href="@{/medico}" class="btn btn-success" role="button">Médico</a>
+        <a th:href="@{/admin/add}" class="btn btn-success" role="button">Crear cita</a>
+        <a th:href="@{/admin/add}" class="btn btn-success" role="button">Citas</a>
     </div>
     <ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
