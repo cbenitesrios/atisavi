@@ -22,7 +22,8 @@ public class UserController {
 	
     @GetMapping("/admin/list")
     public String getAll(Model model){
-        model.addAttribute("usuario", repository.findAll());
+    	log.info(repository.findAll().toString());
+        model.addAttribute("usuarios", repository.findAll());
         return "user_list";
     }
 
@@ -33,9 +34,9 @@ public class UserController {
         	User user = repository.findById(id.get()).get();
             model.addAttribute("usuarios",
             		UserDto.builder()
-            		.id(user.getId())
-            		.email(user.getEmail())
-            		.password(user.getPassword())
+            		.identifier(user.getId())
+            		.mail(user.getEmail())
+            		.pass("")
             		.firstName(user.getFirstName())
             		.lastName(user.getLastName())
             		.phone(user.getPhone())
@@ -50,23 +51,27 @@ public class UserController {
     }
 
     @PostMapping("/admin/addEdit")
-    public String insertOrUpdate(UserDto usuario1){ 
+    public String insertOrUpdate(UserDto usuario1){  
     	log.info(usuario1.toString());
-            Optional<User> usuario1Optional = repository.findByEmail(usuario1.getEmail());
-            if(usuario1Optional.isPresent()){ 
-            	log.info("ENTRO AL EDITAR");
+            Optional<User> usuario1Optional = repository.findByEmail(usuario1.getMail());
+ 
+            if(usuario1Optional.isPresent()){  
             	log.info(usuario1Optional.get().toString());
             	User editUser = usuario1Optional.get();
-            	editUser.setId(usuario1.getId());
-                editUser.setEmail(usuario1.getEmail());
+            	editUser.setId(usuario1.getIdentifier());
+                editUser.setEmail(usuario1.getMail());
                 editUser.setFirstName(usuario1.getFirstName());
                 editUser.setLastName(usuario1.getLastName());
                 editUser.setPhone(usuario1.getPhone()); 
+                
+                log.info(usuario1Optional.get().toString());
+                log.info(editUser.toString());
                 repository.save(editUser);
             }else {
+            	log.info("ENTRO A SAVEAR");
             	repository.save(User.builder()
-            			.email(usuario1.getEmail())
-            			.password(usuario1.getPassword())
+            			.email(usuario1.getMail())
+            			.password(usuario1.getPass())
             			.firstName(usuario1.getFirstName())
             			.lastName(usuario1.getLastName())
             			.phone(usuario1.getPhone())

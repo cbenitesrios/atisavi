@@ -10,8 +10,8 @@
 <div class="container">
     <h5>Añadir/Editar</h5>
     <form action="#" th:action="@{/admin/addEdit}" method="post" th:object="${usuarios}">
-    	<p  th:if="${addUser}">Id:<br/> </p>
-        <input th:if="${addUser}" type="number" class="form-control" id="id" th:field="*{id}" placeholder="ID" disabled/> 
+    	<p >Id:<br/> </p>
+        <input   type="number" class="form-control" id="id" th:field="*{identifier}" placeholder="ID"/> 
         Nombre:<br/>
         <input type="text" class="form-control" id="nombre" th:field="*{firstName}" placeholder="Nombre"/>
         <br/>
@@ -22,10 +22,9 @@
         <input type="text" class="form-control" id="telefono" th:field="*{phone}" placeholder="Telefono"/>
         <br/> 
         Email:<br/> 
-        <input th:if="${addUser}" type="text" class="form-control" id="email" th:field="*{email}" placeholder="Email"/>
-        <input th:if="${!addUser}" type="text" class="form-control" id="email" th:field="*{email}" placeholder="Email" disabled/>
+        <input  type="text" class="form-control" id="email" th:field="*{mail}" placeholder="Email"/>
         Password:<br/>
-        <input type="text" class="form-control" id="password" th:field="*{password}" placeholder="Apellido"/>
+        <input type="text" class="form-control" id="password" th:field="*{pass}" placeholder="password"/>
         <br/> 
         <br/> 
         <button type="submit" class="btn btn-info" >Aceptar</button>
