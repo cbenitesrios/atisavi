@@ -30,11 +30,11 @@ public class DoctorController {
     private IUserRepository repository; 
 	
 		/*Pantalla principal de doctor*/
-	    @GetMapping(path = {"/doctor"})
+	    @GetMapping(path = {"/doctor", "/doctor/"})
 	    public String doctor( Model model, Principal principal){   
 	    	final String loggedInUserName = principal.getName();
 	    	 model.addAttribute("doctor", repository.findByEmail(loggedInUserName));
-	    	return "doctor";
+	    	return "Medico";
 	    }
 	
 		/*Historia 16 - 17 */

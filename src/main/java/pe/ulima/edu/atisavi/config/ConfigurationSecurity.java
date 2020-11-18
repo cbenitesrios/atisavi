@@ -9,7 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter; 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher; 
 import pe.ulima.edu.atisavi.business.IUserService; 
 
@@ -25,7 +26,17 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter{
 	 	 
 	@Autowired
     private LoggingAccessDeniedHandler accessDeniedHandler;
-  
+	
+	private AuthenticationSuccessHandler authenticationSuccessHandler;
+
+	
+	@Autowired
+    public ConfigurationSecurity(AuthenticationSuccessHandler authenticationSuccessHandler) {
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
+    }
+
+	
+	
     protected void configure(HttpSecurity http) throws Exception {
     
     	 http
@@ -49,7 +60,8 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter{
          .and() 
          	 .formLogin().permitAll()
          	 .loginPage("/login")
-         	 .defaultSuccessUrl("/admin/list") 
+         	 .successHandler(authenticationSuccessHandler)
+         	 //.defaultSuccessUrl("/admin/list")
              .usernameParameter("email").passwordParameter("password")
           .and()  
              .logout().permitAll()

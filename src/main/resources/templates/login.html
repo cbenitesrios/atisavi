@@ -29,9 +29,7 @@
 				<div class="login100-pic js-tilt" data-tilt>
 					<img src="images/img-01.png" alt="IMG">
 				</div> 
-					<form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
-					    <input type="submit" value="Logout" />
-					</form>
+					 
 				<form class="login100-form validate-form"  	th:action="@{/login}" th:object="${userdto}" method="post"> 
 					<span class="login100-form-title">
 						Atisavi Login

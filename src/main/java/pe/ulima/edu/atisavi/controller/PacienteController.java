@@ -34,7 +34,7 @@ public class PacienteController {
 	    public String doctor( Model model, Principal principal){   
 	    	final String loggedInUserName = principal.getName();
 	    	 model.addAttribute("doctor", repository.findByEmail(loggedInUserName));
-	    	return "paciente";
+	    	return "paciente22";
 	    }
 	
 		/*Historia 14 */

@@ -54,7 +54,7 @@ public class RegisterController {
 			roles.add(repoRole.findById(3L).get());
 		}
 		
-		roles.add(repoRole.findById(1L).get());
+		//roles.add(repoRole.findById(1L).get());
 		
 		String raw = user.getPass();
 		String encode = bcrypt.encode(raw); 

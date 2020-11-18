@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 	<head>
 		<title>ATISAVI</title>
-        <link rel="stylesheet" href="../static/css/Paciente.css" />
+        <link rel="stylesheet" th:href="@{/css/Paciente.css}" />
         
         <meta name="viewport" content="width=device-width,initial-scale=1,minimal-ui,user-scalable=yes">
 	</head>
 
 	<body>
-        <h1>ATISAVI</h1>
+        <h1>ATISAVI PACIENTE</h1>
 
         
         <div id=nav>
-
-        <ul >
+		<form th:action="@{/logout}" method="post" th:hidden="false" name="logoutForm">
+					    <input type="submit" value="Logout" />
+		</form>
+					
+        <ul>
             <li >	<a href="#"    title="Inicio">
                 Citas</a>
         </li>
@@ -26,9 +30,11 @@
             <li >	<a href="#"    title="Contactanos">
                 Editar información personal</a>
         </li>
-        
+        </ul>
     </div>
+        <div>
         
+        </div>
                 
                     
 
@@ -36,12 +42,12 @@
 
         <p>BIENVENIDO</p>
 
-        <img src="../static/imagenes/soft1.jpg" >
+        <img th:src="@{/imagenes/soft1.jpg}" >
         
        
 
 	</body>
 
-	<script src="./js/atisavi.js"></script>
+	<script th:src="@{/js/atisavi.js}"></script>
 
 </html>
