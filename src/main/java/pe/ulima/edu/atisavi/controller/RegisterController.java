@@ -52,6 +52,8 @@ public class RegisterController {
 			roles.add(repoRole.findById(2L).get());
 		}else if(user.isMedico()){
 			roles.add(repoRole.findById(3L).get());
+		}else if(user.isAdmin()) {
+			roles.add(repoRole.findById(1L).get());
 		}
 		
 		//roles.add(repoRole.findById(1L).get());

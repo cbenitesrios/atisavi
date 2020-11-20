@@ -16,6 +16,7 @@ public class RegisterDto {
 	private String phone;
 	private boolean paciente;
 	private boolean medico;	
+	private boolean admin;
 	private String email;
 	private String pass;
 }	
