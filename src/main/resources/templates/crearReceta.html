@@ -61,7 +61,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a th:href="@{home}" class="navbar-brand">Atisavi Paciente</a>
+                    <a th:href="@{home}" class="navbar-brand">Atisavi Recetas</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -86,19 +86,51 @@
 			</div>  
 			<div id ="izquierda">
 			<div style="text-align: right; margin-bottom: 5px;">
-			
+			<a th:href="@{/pacientereceta/crear}" class="btn btn-success" role="button">Crear Receta</a>
         <a th:href="@{/pacientereceta}" class="btn btn-success" role="button">Recetas</a>
         <a th:href="@{/pacientecita}" class="btn btn-success" role="button">Citas</a>
         <a th:href="@{/pacientefecha}" class="btn btn-success" role="button">Fechas de entrega</a>
         <a th:href="@{/pacienteinfo}" class="btn btn-success" role="button">Información Personal</a>
     </div>
+    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
     <p>Recetas</p>
+    
     <ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+					
 	    </ul>
 
 			</div>
 			
+			 <form th:action="@{/pacientereceta/registro}" th:object="${registerdto}" method="post">
+                        
+                        <div class="form-row">
+                            <div class="name">Medicamento</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="email" name="email">
+                                    <label class="label--desc">Introduzca el medicamento</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Cantitad</div>
+                            <div class="value">
+                                
+                                    
+                                        <div class="input-group">
+                                            <input class="input--style-5" type="text" name="phone">
+                                            <label class="label--desc">Introduzca la cantidad</label>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                       
+                         
+                        <div>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Crear Receta</button>
+                        </div>
+                    </form>
           </div>
      </section>
 

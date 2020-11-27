@@ -28,14 +28,8 @@ public class PacienteController {
 	
 	@Autowired
     private IUserRepository repository; 
-	 @GetMapping("/pacientereceta")
-		public String Pac1() {   
-			return "VistaPacRec"; 
-		}
-	    @GetMapping("/pacientecita")
-	   	public String Pac2() {   
-	   		return "VistaPacCit"; 
-	   	}	
+	 
+	   	
 	 	
 	    @GetMapping("/pacientefecha")
 	   	public String Pac3() {   

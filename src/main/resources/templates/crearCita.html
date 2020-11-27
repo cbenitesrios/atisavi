@@ -86,19 +86,37 @@
 			</div>  
 			<div id ="izquierda">
 			<div style="text-align: right; margin-bottom: 5px;">
-			
-        <a th:href="@{/pacientereceta}" class="btn btn-success" role="button">Recetas</a>
+			<a th:href="@{/pacientecita/crear}" class="btn btn-success" role="button">Crear cita</a>
         <a th:href="@{/pacientecita}" class="btn btn-success" role="button">Citas</a>
+        <a th:href="@{/pacientereceta}" class="btn btn-success" role="button">Recetas</a>
         <a th:href="@{/pacientefecha}" class="btn btn-success" role="button">Fechas de entrega</a>
         <a th:href="@{/pacienteinfo}" class="btn btn-success" role="button">Información Personal</a>
     </div>
-    <p>Recetas</p>
+    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+    <p>Citas</p>
     <ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+					
 	    </ul>
 
 			</div>
-			
+			<form th:action="@{/pacientecita/registro}" th:object="${registerdto}" method="post">
+                        
+                        <div class="form-row">
+                            <div class="name">Fecha</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="email" name="email">
+                                    <label class="label--desc">Introduzca la fecha</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                         
+                        <div>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Crear cita</button>
+                        </div>
+                    </form>
           </div>
      </section>
 

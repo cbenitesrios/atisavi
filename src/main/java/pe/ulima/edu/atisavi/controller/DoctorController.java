@@ -21,6 +21,7 @@ import pe.ulima.edu.atisavi.model.User;
 import pe.ulima.edu.atisavi.model.dto.UserDto;
 import pe.ulima.edu.atisavi.repository.IRoleRepository;
 import pe.ulima.edu.atisavi.repository.IUserRepository;
+import pe.ulima.edu.atisavi.repository.RecetaRepository;
 
 @Controller 
 @Log
@@ -32,9 +33,26 @@ public class DoctorController {
 	
 	@Autowired
 	private IRoleRepository rolerepo;
+	
+	@Autowired
+	private RecetaRepository repository2;
+	
 	@GetMapping("/medreceta")
 	public String Med1() {   
+		
 		return "VistaMedRec"; 
+	}
+	public String Med1( Model model, Principal principal){   
+    	final String loggedInUserName = principal.getName();
+    	 model.addAttribute("doctor", repository.findByEmail(loggedInUserName));
+    	 model.addAttribute("pacientes", repository.findByRolesIn(Arrays.asList(rolerepo.findById(2l).get())).get());
+    	return "VistaMedico";
+    }
+	
+	
+	@GetMapping("/medreceta/crear")
+	public String Med11() {   
+		return "crearReceta"; 
 	}
     @GetMapping("/medcita")
    	public String Med2() {   
