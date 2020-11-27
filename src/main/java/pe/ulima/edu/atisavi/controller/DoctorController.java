@@ -19,6 +19,7 @@ import lombok.extern.java.Log;
 import pe.ulima.edu.atisavi.model.Role;
 import pe.ulima.edu.atisavi.model.User;
 import pe.ulima.edu.atisavi.model.dto.UserDto;
+import pe.ulima.edu.atisavi.repository.IRoleRepository;
 import pe.ulima.edu.atisavi.repository.IUserRepository;
 
 @Controller 
@@ -28,6 +29,9 @@ public class DoctorController {
 	
 	@Autowired
     private IUserRepository repository; 
+	
+	@Autowired
+	private IRoleRepository rolerepo;
 	@GetMapping("/medreceta")
 	public String Med1() {   
 		return "VistaMedRec"; 
@@ -52,6 +56,7 @@ public class DoctorController {
 	    public String doctor( Model model, Principal principal){   
 	    	final String loggedInUserName = principal.getName();
 	    	 model.addAttribute("doctor", repository.findByEmail(loggedInUserName));
+	    	 model.addAttribute("pacientes", repository.findByRolesIn(Arrays.asList(rolerepo.findById(2l).get())).get());
 	    	return "VistaMedico";
 	    }
 	
@@ -61,7 +66,7 @@ public class DoctorController {
 			 if(id.isPresent()){
 				 model.addAttribute("pacientes", repository.findById(id.get()).get());
 			 }else {
-				 model.addAttribute("pacientes", repository.findByRolesIn(Arrays.asList("PACIENTE")));
+				 model.addAttribute("pacientes", repository.findByRolesIn(Arrays.asList(rolerepo.findById(2l).get())));
 			 } 
 		        return "pacientes_list";
 		}

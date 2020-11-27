@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 
      <title>Atisavi - Salvando vidas a tiempo</title>
@@ -92,8 +92,32 @@
         <a th:href="@{/medicoinfo}" class="btn btn-success" role="button">Información Personal</a>
     </div>
     <p>bienvenido médico</p>
+    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+	    
     <ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+					
+	    <p>Listado de pacientes</p>
+	        <table class="table table-bordered"> 
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th> 
+            <th>Teléfono</th>
+            <th>Email</th>  
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="usuarios : ${pacientes}">
+            <td th:text="${usuarios.id}"></td>
+            <td th:text="${usuarios.firstName}"></td>
+            <td th:text="${usuarios.lastName}"></td>
+            <td th:text="${usuarios.phone}"></td>
+            <td th:text="${usuarios.email}"></td>  
+        </tr>
+        </tbody>
+    </table> 
+	    
 	    </ul>
   
 			</div>
