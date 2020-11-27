@@ -24,25 +24,25 @@ public class AdminController {
     @GetMapping("/admin/list")
     public String getAll(Model model, Principal principal){
     	log.info("USUARIO LOGEADO: " +  principal.getName()); 
-        model.addAttribute("usuarios", repository.findAll());
-        return "pagina1";
+        model.addAttribute("administradores", repository.findAll());
+        return "VistaAdmin";
     }
-    @GetMapping("/receta")
+    @GetMapping("/adminreceta")
 	public String PagAdmin1() {   
-		return "pagina1"; 
+		return "VistaAdminRec"; 
 	}
-    @GetMapping("/stock")
+    @GetMapping("/adminstock")
    	public String PagAdmin2() {   
-   		return "pagina1"; 
+   		return "VistaAdminStck"; 
    	}	
  	
-    @GetMapping("/medico")
+    @GetMapping("/adminmedico")
    	public String PagAdmin4() {   
-   		return "pagina1"; 
+   		return "VistaAdminMed"; 
    	}	
-    @GetMapping("/paciente")
+    @GetMapping("/adminpaciente")
    	public String PagAdmin() {   
-   		return "pagina1"; 
+   		return "VistaAsminPac"; 
    	}
 
     @GetMapping(path = {"/admin/add", "/admin/edit/{id}"})
@@ -50,7 +50,7 @@ public class AdminController {
         if(id.isPresent()){
         	model.addAttribute("addUser", false);
         	User user = repository.findById(id.get()).get();
-            model.addAttribute("usuarios",
+            model.addAttribute("administradores",
             		UserDto.builder()
             		.identifier(user.getId())
             		.mail(user.getEmail())
@@ -63,7 +63,7 @@ public class AdminController {
             		
         }else{
         	model.addAttribute("addUser", true);
-            model.addAttribute("usuarios", new UserDto());
+            model.addAttribute("administradores", new UserDto());
         }
         return "add_edit_user";
     }

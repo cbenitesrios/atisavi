@@ -28,13 +28,31 @@ public class DoctorController {
 	
 	@Autowired
     private IUserRepository repository; 
+	@GetMapping("/medreceta")
+	public String Med1() {   
+		return "VistaMedRec"; 
+	}
+    @GetMapping("/medcita")
+   	public String Med2() {   
+   		return "VistaMedCit"; 
+   	}	
+ 	
+    @GetMapping("/medpaciente")
+   	public String Med3() {   
+   		return "VistaMedPac"; 
+   	}	
+    @GetMapping("/medicoinfo")
+   	public String Med4() {   
+   		return "VistaMedInf"; 
+   	}
+
 	
 		/*Pantalla principal de doctor*/
 	    @GetMapping(path = {"/doctor", "/doctor/"})
 	    public String doctor( Model model, Principal principal){   
 	    	final String loggedInUserName = principal.getName();
 	    	 model.addAttribute("doctor", repository.findByEmail(loggedInUserName));
-	    	return "Medico";
+	    	return "VistaMedico";
 	    }
 	
 		/*Historia 16 - 17 */

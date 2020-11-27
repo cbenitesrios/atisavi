@@ -61,7 +61,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a th:href="@{home}" class="navbar-brand">Atisavi</a>
+                    <a th:href="@{home}" class="navbar-brand">Atisavi Administrador</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -86,16 +86,20 @@
 			</div>  
 			<div id ="izquierda">
 			<div style="text-align: right; margin-bottom: 5px;">
-        <a th:href="@{/admin/add}" class="btn btn-success" role="button">Pacientes</a>
-        <a th:href="@{/admin/add}" class="btn btn-success" role="button">Citas</a>
-        <a th:href="@{/admin/add}" class="btn btn-success" role="button">Recetas</a>
-        
+      <a th:href="@{/adminreceta}" class="btn btn-success" role="button">Receta</a>
+        <a th:href="@{/adminstock}" class="btn btn-success" role="button">Stock</a>
+        <a th:href="@{/adminpaciente}" class="btn btn-success" role="button">Paciente</a>
+        <a th:href="@{/adminmedico}" class="btn btn-success" role="button">Médico</a>
     </div>
+    <p>Lista de pacientes</p>
     <ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 	    </ul>
+	    
     <table class="table table-bordered"> 
+    
         <thead>
+       
         <tr>
             <th>ID</th>
             <th>Nombre</th>
@@ -106,15 +110,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="usuarios : ${usuarios}">
-            <td th:text="${usuarios.id}"></td>
-            <td th:text="${usuarios.firstName}"></td>
-            <td th:text="${usuarios.lastName}"></td>
-            <td th:text="${usuarios.phone}"></td>
-            <td th:text="${usuarios.email}"></td> 
+        <tr th:each="administradores : ${administradores}">
+            <td th:text="${administradores.id}"></td>
+            <td th:text="${administradores.firstName}"></td>
+            <td th:text="${administradores.lastName}"></td>
+            
             <td>
-                <a th:href="@{/admin/edit/{id}(id=${usuarios.id})}" class="btn btn-success btn-sm" role="button">Actualizar</a>
-                <a th:href="@{/admin/delete/{id}(id=${usuarios.id})}" class="btn btn-danger btn-sm" role="button">Eliminar</a>
+                <a th:href="@{/admin/edit/{id}(id=${administradores.id})}" class="btn btn-success btn-sm" role="button">Actualizar</a>
+                <a th:href="@{/admin/delete/{id}(id=${administradores.id})}" class="btn btn-danger btn-sm" role="button">Eliminar</a>
             </td>
         </tr>
         </tbody>
@@ -273,6 +276,3 @@
      <script th:src="@{/js/smoothscroll.js}"></script>
      <script th:src="@{/js/owl.carousel.min.js}"></script>
      <script th:src="@{/js/custom.js}"></script>
-
-</body>
-</html>

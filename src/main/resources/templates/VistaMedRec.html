@@ -61,7 +61,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a th:href="@{home}" class="navbar-brand">Atisavi</a>
+                    <a th:href="@{home}" class="navbar-brand">Atisavi Médico</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -86,39 +86,16 @@
 			</div>  
 			<div id ="izquierda">
 			<div style="text-align: right; margin-bottom: 5px;">
-        <a th:href="@{/receta}" class="btn btn-success" role="button">Receta</a>
-        <a th:href="@{/stock}" class="btn btn-success" role="button">Stock</a>
-        <a th:href="@{/paciente}" class="btn btn-success" role="button">Paciente</a>
-        <a th:href="@{/medico}" class="btn btn-success" role="button">Médico</a>
+         <a th:href="@{/medreceta}" class="btn btn-success" role="button">Recetas</a>
+        <a th:href="@{/medcita}" class="btn btn-success" role="button">Citas</a>
+        <a th:href="@{/medpaciente}" class="btn btn-success" role="button">Pacientes</a>
+        <a th:href="@{/medicoinfo}" class="btn btn-success" role="button">Información Personal</a>
     </div>
+    <p>Lista de recetas</p>
     <ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 	    </ul>
-    <table class="table table-bordered"> 
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Apellido</th> 
-            <th>Teléfono</th>
-            <th>Email</th> 
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="usuarios : ${usuarios}">
-            <td th:text="${usuarios.id}"></td>
-            <td th:text="${usuarios.firstName}"></td>
-            <td th:text="${usuarios.lastName}"></td>
-            <td th:text="${usuarios.phone}"></td>
-            <td th:text="${usuarios.email}"></td> 
-            <td>
-                <a th:href="@{/admin/edit/{id}(id=${usuarios.id})}" class="btn btn-success btn-sm" role="button">Actualizar</a>
-                <a th:href="@{/admin/delete/{id}(id=${usuarios.id})}" class="btn btn-danger btn-sm" role="button">Eliminar</a>
-            </td>
-        </tr>
-        </tbody>
-    </table> 
+  
 			</div>
           </div>
      </section>

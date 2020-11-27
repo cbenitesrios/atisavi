@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
+<head>
+
+     <title>Atisavi - Salvando vidas a tiempo</title>
+ 
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="Tooplate">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"  />
+     <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"  />
+     <link rel="stylesheet" th:href="@{/css/animate.css}"  />
+     <link rel="stylesheet" th:href="@{/css/owl.carousel.css}"  />
+     <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}"  />
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" th:href="@{/css/tooplate-style.css}"  />
+
+</head>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+ 
+     <section class="preloader">
+          <div class="spinner"> 
+               <span class="spinner-rotate"></span> 
+          </div>
+     </section>
+
+
+     <!-- HEADER -->
+     <header>
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-5">
+                         <p>Bienvenido a la web de Atisavi</p>
+                    </div>
+                         
+                    <div class="col-md-8 col-sm-7 text-align-right">
+                         <span class="phone-icon"><i class="fa fa-phone"></i> 01-2636195</span>
+                         <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 6:00 AM - 10:00 PM (Lun-Vie)</span>
+                         <span class="email-icon"><i class="fa fa-envelope-o"></i> <a href="#">info@atisavi.com</a></span>
+                    </div>
+
+               </div>
+          </div>
+     </header>
+
+
+     <!-- MENU -->
+     <section class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a th:href="@{home}" class="navbar-brand">Atisavi Paciente</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="#top" class="smoothScroll">Home</a></li>
+                         <li><a href="#about" class="smoothScroll">Sobre nosotros</a></li> 
+						 <li><a href="#appointment" class="smoothScroll">Hacer una consulta</a></li> 
+                         <li><a href="#google-map" class="smoothScroll">Contacto</a></li>
+						 <li class="appointment-btn"><a th:href="@{login}">Inicio de Sesion</a></li>
+                    </ul>
+               </div>
+
+          </div>
+     </section>
+
+
+     <!-- HOME -->
+     <section id="home" class="slider" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div id="navbar" class="collapse navbar-collapse"> 
+			</div>  
+			<div id ="izquierda">
+			<div style="text-align: right; margin-bottom: 5px;">
+        <a th:href="@{/pacientereceta}" class="btn btn-success" role="button">Recetas</a>
+        <a th:href="@{/pacientecita}" class="btn btn-success" role="button">Citas</a>
+        <a th:href="@{/pacientefecha}" class="btn btn-success" role="button">Fechas de entrega</a>
+        <a th:href="@{/pacienteinfo}" class="btn btn-success" role="button">Información Personal</a>
+    </div>
+    <p>Citas</p>
+    <ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+	    </ul>
+
+			</div>
+			AQUI CITAS
+          </div>
+     </section>
+
+
+     <!-- ABOUT -->
+     <section id="about">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                         <div class="about-info">
+                              <h2 class="wow fadeInUp" data-wow-delay="0.6s">Bienvenido a Atisavi</h2>
+                              <div class="wow fadeInUp" data-wow-delay="0.8s">
+                                   <p>Aenean luctus lobortis tellus, vel ornare enim molestie condimentum. Curabitur lacinia nisi vitae velit volutpat venenatis.</p>
+                                   <p>Sed a dignissim lacus. Quisque fermentum est non orci commodo, a luctus urna mattis. Ut placerat, diam a tempus vehicula.</p>
+                              </div>
+                              <figure class="profile wow fadeInUp" data-wow-delay="1s">
+                                   <img src="images/author-image.jpg" class="img-responsive" alt="">
+                                   <figcaption>
+                                        <h3>Dr. Carlos Benites</h3>
+                                        <p>General Principal</p>
+                                   </figcaption>
+                              </figure>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </section>
+
+
+      
+
+
+     <!-- MAKE AN APPOINTMENT -->
+     <section id="appointment" data-stellar-background-ratio="3">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                         <img src="images/appointment-image.jpg" class="img-responsive" alt="">
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                         <!-- CONTACT FORM HERE -->
+                         <form id="appointment-form" role="form" method="post" action="#">
+
+                              <!-- SECTION TITLE -->
+                              <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+                                   <h2>Hacer una consulta</h2>
+                              </div>
+
+                              <div class="wow fadeInUp" data-wow-delay="0.8s">
+                                   <div class="col-md-6 col-sm-6">
+                                        <label for="name">Nombre</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Nombre">
+                                   </div>
+
+                                   <div class="col-md-6 col-sm-6">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Tu Email">
+                                   </div> 
+
+                                   <div class="col-md-12 col-sm-12">
+                                        <label for="telephone">Número de teléfono</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Teléfono">
+                                        <label for="Message">Escribe tu mensaje</label>
+                                        <textarea class="form-control" rows="5" id="message" name="message" placeholder="Mensaje"></textarea>
+                                        <button type="submit" class="form-control" id="cf-submit" name="submit">Enviar</button>
+                                   </div>
+                              </div>
+                        </form>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- GOOGLE MAP -->
+     <section id="google-map">
+     <!-- How to change your own map point
+            1. Go to Google Maps
+            2. Click on your location point
+            3. Click "Share" and choose "Embed map" tab
+            4. Copy only URL and paste it within the src="" field below
+	-->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1094.794115966288!2d-76.97197752626167!3d-12.084558668249647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1602215966053!5m2!1ses!2spe" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+     </section>           
+
+
+     <!-- FOOTER -->
+     <footer data-stellar-background-ratio="5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="footer-thumb"> 
+                              <h4 class="wow fadeInUp" data-wow-delay="0.4s">Informacion de Contacto</h4>
+                              <p>Fusce at libero iaculis, venenatis augue quis, pharetra lorem. Curabitur ut dolor eu elit consequat ultricies.</p>
+
+                              <div class="contact-info">
+                                   <p><i class="fa fa-phone"></i> 01-2636195</p>
+                                   <p><i class="fa fa-envelope-o"></i> <a href="#">info@atisavi.com</a></p>
+                              </div>
+                         </div>
+                    </div>
+
+             
+
+                    <div class="col-md-4 col-sm-4"> 
+                         <div class="footer-thumb">
+                              <div class="opening-hours">
+                                   <h4 class="wow fadeInUp" data-wow-delay="0.4s">Atención</h4>
+                                   <p>Lunes - Viernes <span>06:00 AM - 10:00 PM</span></p>
+                                   <p>Sabado <span>09:00 AM - 08:00 PM</span></p>
+                                   <p>Domingos <span>Closed</span></p>
+                              </div> 
+
+                              <ul class="social-icon">
+                                   <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-instagram"></a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 border-top">
+                         <div class="col-md-4 col-sm-6">
+                              <div class="copyright-text"> 
+                                   <p>Copyright &copy; 2020 Atisavi 
+                                    </p>
+                              </div>
+                         </div> 
+                         <div class="col-md-2 col-sm-2 text-align-center">
+                              <div class="angle-up-btn"> 
+                                  <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s"><i class="fa fa-angle-up"></i></a>
+                              </div>
+                         </div>   
+                    </div>
+                    
+               </div>
+          </div>
+     </footer> 
+     <!-- SCRIPTS -->
+     <script th:src="@{/js/jquery.js}"></script>
+     <script th:src="@{/js/bootstrap.min.js}"></script>
+     <script th:src="@{/js/jquery.sticky.js}"></script>
+     <script th:src="@{/js/jquery.stellar.min.js}"></script>
+     <script th:src="@{/js/wow.min.js}"></script>
+     <script th:src="@{/js/smoothscroll.js}"></script>
+     <script th:src="@{/js/owl.carousel.min.js}"></script>
+     <script th:src="@{/js/custom.js}"></script>
+
+</body>
+</html>

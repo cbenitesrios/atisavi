@@ -19,55 +19,48 @@ import lombok.extern.java.Log;
 import pe.ulima.edu.atisavi.model.Role;
 import pe.ulima.edu.atisavi.model.User;
 import pe.ulima.edu.atisavi.model.dto.UserDto;
+import pe.ulima.edu.atisavi.repository.CitaRepository;
 import pe.ulima.edu.atisavi.repository.IUserRepository;
 
 @Controller 
 @Log
-public class PacienteController {
+public class CitaController {
 
-	
 	@Autowired
-    private IUserRepository repository; 
-	 @GetMapping("/pacientereceta")
-		public String Pac1() {   
-			return "VistaPacRec"; 
-		}
-	    @GetMapping("/pacientecita")
-	   	public String Pac2() {   
-	   		return "VistaPacCit"; 
-	   	}	
-	 	
-	    @GetMapping("/pacientefecha")
-	   	public String Pac3() {   
-	   		return "VistaPacFec"; 
-	   	}	
-	    @GetMapping("/pacienteinfo")
-	   	public String Pac4() {   
-	   		return "VistaPacInf"; 
-	   	}
-
-	
-	
-		/*Pantalla principal de paciente*/
-	    @GetMapping(path = {"/paciente", "/paciente/"})
+    private CitaRepository repository; 
+	/*adaptar a cita*/
+		/*Pantalla principal de doctor*/
+	   /* @GetMapping(path = {"/doctor", "/doctor/"})
 	    public String doctor( Model model, Principal principal){   
 	    	final String loggedInUserName = principal.getName();
-	    	 model.addAttribute("pacientes", repository.findByEmail(loggedInUserName));
-	    	return "VistaPaciente";
-	    }
+	    	 model.addAttribute("doctor", repository.findById(loggedInUserName));
+	    	return "Medico";
+	    }*/
 	
-		/*Historia 14 */
-		@GetMapping("/paciente/info")
-		public String getAll(Model model, Principal principal){ 
-				model.addAttribute("pacientes", repository.findByEmail(principal.getName())); 
-		        return "paciente_info";
-		}
- 
+		/*Historia 16 - 17 
+		@GetMapping("/doctor/listarpacientes/{id}")
+		public String getAll(Model model, @PathVariable("id") Optional<Long> id){
+			 if(id.isPresent()){
+				 model.addAttribute("pacientes", repository.findById(id.get()).get());
+			 }else {
+				 model.addAttribute("pacientes", repository.findByRolesIn(Arrays.asList("PACIENTE")));
+			 } 
+		        return "pacientes_list";
+		}*/
+
+
+	    /*Pantalla editar doctor
+	    @GetMapping(path = {"/doctor/editar"})
+	    public String doctoredit( Model model, Principal principal){   
+	    	final String loggedInUserName = principal.getName();
+	    	 model.addAttribute("doctor", repository.findByEmail(loggedInUserName));
+	    	return "doctor_editar";
+	    }*/
 	     
 	    
-	    /*editar paciente info */
-	    @PostMapping("/paciente/addEdit")
-	    public String pacienteUpdate(UserDto usuario1){  
+	    /*editar doctor 
+	    @PostMapping("/doctor/addEdit")
+	    public String insertOrUpdate(UserDto usuario1){  
 	    		log.info(usuario1.toString());
 	            Optional<User> usuario1Optional = repository.findByEmail(usuario1.getMail()); 
 	            if(usuario1Optional.isPresent()){   
@@ -78,10 +71,11 @@ public class PacienteController {
 	                editUser.setLastName(usuario1.getLastName());
 	                editUser.setPhone(usuario1.getPhone());  
 	                repository.save(editUser); 
-	            } 
-	        return "redirect:/paciente";
+	            }
+	        
+	        return "redirect:/doctor";
 	    }
-
+*/
 	  
 
 }
