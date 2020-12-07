@@ -9,9 +9,8 @@
 <div class="alert alert-success"> 
 <div class="container">
     <h5>Añadir/Editar</h5>
-    <form action="#" th:action="@{/admin/addEdit}" method="post" th:object="${usuarios}">
-    	<p >Id:<br/> </p>
-        <input   type="number" class="form-control" id="id" th:field="*{identifier}" placeholder="ID"/> 
+    <form action="#" th:action="@{/admin/addEdit}" method="post" th:object="${administradores}">
+    	
         Nombre:<br/>
         <input type="text" class="form-control" id="nombre" th:field="*{firstName}" placeholder="Nombre"/>
         <br/>

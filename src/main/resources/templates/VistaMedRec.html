@@ -86,7 +86,7 @@
 			</div>  
 			<div id ="izquierda">
 			<div style="text-align: right; margin-bottom: 5px;">
-		<a th:href="@{/medreceta/crear}" class="btn btn-success" role="button">Crear Receta</a>
+		<a th:href="@{/receta/add}" class="btn btn-success" role="button">Crear Receta</a>
          <a th:href="@{/medreceta}" class="btn btn-success" role="button">Recetas</a>
         <a th:href="@{/medcita}" class="btn btn-success" role="button">Citas</a>
         <a th:href="@{/medpaciente}" class="btn btn-success" role="button">Pacientes</a>
@@ -96,6 +96,29 @@
     <ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 	    </ul>
+	       <table class="table table-bordered"> 
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Medicamento</th>
+            <th>Cantidad</th> 
+            
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="recetas : ${recetas}">
+            <td th:text="${recetas.id}"></td>
+            <td th:text="${recetas.medicamento}"></td>
+            <td th:text="${recetas.cantidad}"></td>
+            
+            <td>
+            
+                <a th:href="@{/receta/edit/{id}(id=${recetas.id})}" class="btn btn-success btn-sm" role="button">Actualizar</a>
+                <a th:href="@{/receta/delete/{id}(id=${recetas.id})}" class="btn btn-danger btn-sm" role="button">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
   
 			</div>
           </div>

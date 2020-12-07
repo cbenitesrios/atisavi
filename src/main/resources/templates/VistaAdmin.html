@@ -115,6 +115,7 @@
             <td th:text="${administradores.phone}"></td>
             <td th:text="${administradores.email}"></td> 
             <td>
+            <a th:href="@{/admin/add}" class="btn btn-success btn-sm" role="button">Añadir</a>
                 <a th:href="@{/admin/edit/{id}(id=${administradores.id})}" class="btn btn-success btn-sm" role="button">Actualizar</a>
                 <a th:href="@{/admin/delete/{id}(id=${administradores.id})}" class="btn btn-danger btn-sm" role="button">Eliminar</a>
             </td>

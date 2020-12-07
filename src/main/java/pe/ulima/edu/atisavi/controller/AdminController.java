@@ -1,13 +1,16 @@
 package pe.ulima.edu.atisavi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.java.Log;
+import pe.ulima.edu.atisavi.business.IUserService;
 import pe.ulima.edu.atisavi.model.User;
 import pe.ulima.edu.atisavi.model.dto.UserDto;
+import pe.ulima.edu.atisavi.repository.IRoleRepository;
 import pe.ulima.edu.atisavi.repository.IUserRepository;
 
 import java.security.Principal;
@@ -16,6 +19,18 @@ import java.util.Optional;
 @Controller 
 @Log
 public class AdminController {
+	@Autowired
+	IUserService userservice;
+	
+	@Autowired
+	IUserRepository repoUser; 
+	
+	@Autowired
+	IRoleRepository repoRole;
+
+	@Autowired
+    BCryptPasswordEncoder bcrypt; 
+	
 	@Autowired
     private IUserRepository repository; 
 	
@@ -69,10 +84,10 @@ public class AdminController {
     }
 
     @PostMapping("/admin/addEdit")
-    public String insertOrUpdate(UserDto usuario1){  
+    public String insertOrUpdate(Model model, UserDto usuario1){  
     	log.info(usuario1.toString());
             Optional<User> usuario1Optional = repository.findByEmail(usuario1.getMail());
- 
+           // model.addAttribute("administrador", repository.findByEmail(usuario1.getMail()));
             if(usuario1Optional.isPresent()){  
             	log.info(usuario1Optional.get().toString());
             	User editUser = usuario1Optional.get();
