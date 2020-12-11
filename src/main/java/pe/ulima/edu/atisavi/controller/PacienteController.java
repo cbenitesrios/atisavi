@@ -1,7 +1,9 @@
 package pe.ulima.edu.atisavi.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import lombok.extern.java.Log;
 import pe.ulima.edu.atisavi.model.Role;
 import pe.ulima.edu.atisavi.model.User;
+import pe.ulima.edu.atisavi.model.dto.RecetaList;
 import pe.ulima.edu.atisavi.model.dto.UserDto;
 import pe.ulima.edu.atisavi.repository.IUserRepository;
+import pe.ulima.edu.atisavi.repository.RecetaRepository;
 
 @Controller 
 @Log
@@ -28,7 +32,9 @@ public class PacienteController {
 	
 	@Autowired
     private IUserRepository repository; 
-	 
+
+	@Autowired
+    private RecetaRepository repository2; 
 	   	
 	 	
 	    @GetMapping("/pacientefecha")
@@ -47,6 +53,19 @@ public class PacienteController {
 	    public String doctor( Model model, Principal principal){   
 	    	final String loggedInUserName = principal.getName();
 	    	 model.addAttribute("pacientes", repository.findByEmail(loggedInUserName));
+	    	 List<RecetaList> receta= new ArrayList<>();
+	    	 repository2.findAll().stream().filter(a-> a.getNamePac()
+	    			 .equalsIgnoreCase(repository.findByEmail(loggedInUserName).get().getFirstName()))
+	     	.forEach(a-> receta.add(
+	     			RecetaList.builder()
+	     			.cantidad(a.getMedicamentoSoli().get(0).getQuantity())
+	     			.creado(a.getCreateDate())
+	     			.doctor(a.getNameDoc()) 
+	     			.medicamento(a.getMedicamentoSoli().get(0).getMedicine().getName())
+	     			.pickdate(a.getMedicamentoSoli().get(0).getPickDate())
+	     			.build()
+	     			));
+	         model.addAttribute("recetas", receta );
 	    	return "VistaPaciente";
 	    }
 	

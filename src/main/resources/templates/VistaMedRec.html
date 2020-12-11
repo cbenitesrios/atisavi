@@ -100,7 +100,10 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Paciente</th>
             <th>Medicamento</th>
+            <th>Creacion</th> 
+            <th>Fecha de recojo</th> 
             <th>Cantidad</th> 
             
         </tr>
@@ -108,9 +111,11 @@
         <tbody>
         <tr th:each="recetas : ${recetas}">
             <td th:text="${recetas.id}"></td>
+            <td th:text="${recetas.paciente}"></td>
             <td th:text="${recetas.medicamento}"></td>
+            <td th:text="${recetas.creado}"></td>
+            <td th:text="${recetas.pickdate}"></td>
             <td th:text="${recetas.cantidad}"></td>
-            
             <td>
             
                 <a th:href="@{/receta/edit/{id}(id=${recetas.id})}" class="btn btn-success btn-sm" role="button">Actualizar</a>

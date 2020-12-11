@@ -96,7 +96,26 @@
     <ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 	    </ul>
-
+<table class="table table-bordered"> 
+        <thead>
+        <tr> 
+            <th>Medicamento</th>
+            <th>Creacion</th> 
+            <th>Fecha de recojo</th> 
+            <th>Cantidad</th> 
+            
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="recetas : ${recetas}">  
+            <td th:text="${recetas.medicamento}"></td>
+            <td th:text="${recetas.creado}"></td>
+            <td th:text="${recetas.pickdate}"></td>
+            <td th:text="${recetas.cantidad}"></td>
+           
+        </tr>
+        </tbody>
+    </table>
 			</div>
 			
           </div>

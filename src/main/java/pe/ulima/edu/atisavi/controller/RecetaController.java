@@ -2,7 +2,9 @@ package pe.ulima.edu.atisavi.controller;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional; 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Controller;
@@ -14,9 +16,13 @@ import lombok.extern.java.Log;
 import pe.ulima.edu.atisavi.business.IUserService;
 import pe.ulima.edu.atisavi.model.Medicamento;
 import pe.ulima.edu.atisavi.model.MedicamentoSolicitud;
-import pe.ulima.edu.atisavi.model.Receta; 
-import pe.ulima.edu.atisavi.model.dto.RecetaDto; 
+import pe.ulima.edu.atisavi.model.Receta;
+import pe.ulima.edu.atisavi.model.User;
+import pe.ulima.edu.atisavi.model.dto.RecetaDto;
+import pe.ulima.edu.atisavi.model.dto.RecetaList;
+import pe.ulima.edu.atisavi.repository.IUserRepository;
 import pe.ulima.edu.atisavi.repository.MedicamentoRepo;
+import pe.ulima.edu.atisavi.repository.MedicamentoSoliRepo;
 import pe.ulima.edu.atisavi.repository.RecetaRepository;
 
 @Controller 
@@ -30,16 +36,34 @@ public class RecetaController {
     private RecetaRepository repository; 
 	
 	@Autowired
+    private IUserRepository user; 
+	
+	@Autowired
 	IUserService userservice;
 	
 	@Autowired
 	MedicamentoRepo medicamentoRepo;
 	
 	@Autowired
-	MedicamentoSolicitud medicamentoSoliRepo;
+	MedicamentoSoliRepo medicamentoSoliRepo;
 	
 	@GetMapping("/pacientereceta")
-	public String Rec() {   
+	public String Rec(Principal principal, Model model) { 
+		    	final String loggedInUserName = principal.getName();
+		    	 model.addAttribute("pacientes", user.findByEmail(loggedInUserName));
+		    	 List<RecetaList> receta= new ArrayList<>();
+		    	 repository.findAll().stream().filter(a-> a.getNamePac()
+		    			 .equalsIgnoreCase(user.findByEmail(loggedInUserName).get().getFirstName()))
+		     	.forEach(a-> receta.add(
+		     			RecetaList.builder()
+		     			.cantidad(a.getMedicamentoSoli().get(0).getQuantity())
+		     			.creado(a.getCreateDate())
+		     			.doctor(a.getNameDoc()) 
+		     			.medicamento(a.getMedicamentoSoli().get(0).getMedicine().getName())
+		     			.pickdate(a.getMedicamentoSoli().get(0).getPickDate())
+		     			.build()
+		     			));
+		         model.addAttribute("recetas", receta );
 		return "VistaPacRec"; 
 	}
 	@GetMapping("/pacientereceta/crear")
@@ -53,7 +77,20 @@ public class RecetaController {
 	@GetMapping("/receta/list")
     public String getAll(Model model, Principal principal){
     	log.info("USUARIO LOGEADO: " +  principal.getName()); 
-        model.addAttribute("recetas", repository.findAll());
+    	log.info("USUARIO LOGEADO: " +  user.findByEmail(principal.getName()).get().getFirstName()); 
+    	List<RecetaList> receta= new ArrayList<>();
+    	repository.findAll().stream().filter(a-> a.getNameDoc().equalsIgnoreCase(
+    			user.findByEmail(principal.getName()).get().getFirstName()))
+    	.forEach(a-> receta.add(
+    			RecetaList.builder().cantidad(a.getMedicamentoSoli().get(0).getQuantity())
+    			.creado(a.getCreateDate())
+    			.paciente(a.getNamePac())
+    			.id(a.getId())
+    			.medicamento(a.getMedicamentoSoli().get(0).getMedicine().getName())
+    			.pickdate(a.getMedicamentoSoli().get(0).getPickDate())
+    			.build()
+    			));
+        model.addAttribute("recetas", receta );
         return "VistaMedRec";
 }
 	
@@ -77,11 +114,10 @@ public class RecetaController {
     }
 
     @PostMapping("/receta/addEdit")
-    public String insertOrUpdate(Model model, RecetaDto receta1){  
-    	 
-            Optional<Receta> receta1Optional = repository.findById(receta1.getIdentifier());
-            Medicamento medi=medicamentoRepo.findByName(receta1.getMedicamento());
-             if(receta1Optional.isPresent()){   
+    public String insertOrUpdate(Model model, RecetaDto receta1,Principal principal) throws Exception{  
+    	   Optional<Receta> receta1Optional = receta1.getIdentifier()==null?null:repository.findById(receta1.getIdentifier());
+           Medicamento medi=medicamentoRepo.findByName(receta1.getMedicamento());
+           if(receta1Optional!=null && receta1Optional.isPresent() && receta1.getIdentifier()!=null){   
             	medicamentoRepo.findByName(receta1.getMedicamento());
             	log.info(receta1Optional.get().toString());
             	Receta editReceta = receta1Optional.get();
@@ -95,14 +131,21 @@ public class RecetaController {
                 log.info(editReceta.toString());
                 repository.save(editReceta);
             }else {
-             	repository.save(Receta.builder()
-            			.id(receta1.getIdentifier())
-            			.medicamentoSoli((Arrays.asList(MedicamentoSolicitud.builder()
-            					.medicine(medi)
-            					.quantity(receta1.getCantidad())
-            					.pickDate(generarFecha(medi, receta1.getCantidad()))
-            					.build())))            			
-            			.build());
+            	if(user.findById(receta1.getPaciente()).isPresent()) {
+            		repository.save(Receta.builder()
+                			.id(receta1.getIdentifier())
+                			.nameDoc(user.findByEmail(principal.getName()).get().getFirstName())
+                			.namePac(user.findById(receta1.getPaciente()).get().getFirstName())
+                			.medicamentoSoli((Arrays.asList(MedicamentoSolicitud.builder()
+                					.medicine(medi)
+                					.quantity(receta1.getCantidad())
+                					.pickDate(generarFecha(medi, receta1.getCantidad()))
+                					.build())))            			
+                			.build());
+            	}else {
+            	  throw new Exception();
+            	}
+             	
             	
             }
         
@@ -122,6 +165,7 @@ public class RecetaController {
 	
 	private LocalDateTime generarFecha(Medicamento medicamento, Integer cantidad) {
 		if(medicamento.getStock()-cantidad<0) {
+			medicamento.setStock(medicamento.getStock()-cantidad);
 			medicamentoRepo.save(medicamento);
 			return LocalDateTime.now().plusMonths(1L);
 		}else {

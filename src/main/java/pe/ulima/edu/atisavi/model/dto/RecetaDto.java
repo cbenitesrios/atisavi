@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class RecetaDto {
+	
 	private Long identifier;
 	private String medicamento;
+	private Long paciente;
 	private Integer cantidad;
+
 }

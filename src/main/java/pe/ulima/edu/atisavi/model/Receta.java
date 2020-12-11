@@ -44,6 +44,7 @@ public class Receta {
 	private LocalDateTime createDate;
  
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)  
+    @JoinColumn(name = "receta_id", nullable = false)
     private  List<MedicamentoSolicitud> medicamentoSoli;
     
  
